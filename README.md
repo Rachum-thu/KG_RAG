@@ -1,3 +1,9 @@
+1. Set up the environment following the instructions in original README.
+2. update the configs in `config.yaml` and `gpt_config.env`.
+3. bash run_gemini.sh to replicate different strategies for gemini-1.5-flash.
+4. bash run_gpt4o.sh to replicate different strategies for gpt-4o-mini.
+
+
 <p align="center">
   <img src="https://github.com/BaranziniLab/KG_RAG/assets/42702311/0b2f5b42-761e-4d5b-8d6f-77c8b965f017" width="450">
 </p>
