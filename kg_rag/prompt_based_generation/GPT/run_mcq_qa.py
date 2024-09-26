@@ -1,6 +1,6 @@
 from kg_rag.utility import *
 import sys
-
+from tqdm import tqdm
 
 CHAT_MODEL_ID = sys.argv[1]
 
@@ -18,7 +18,7 @@ def main():
     start_time = time.time()
     question_df = pd.read_csv(QUESTION_PATH)
     answer_list = []
-    for index, row in question_df.iterrows():
+    for index, row in tqdm(question_df.head(50).iterrows(), total=50):
         question = "Question: "+ row["text"]
         output = get_GPT_response(question, SYSTEM_PROMPT, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
         answer_list.append((row["text"], row["correct_node"], output))                  

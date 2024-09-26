@@ -8,8 +8,9 @@ from kg_rag.utility import *
 import sys
 
 
-
+from tqdm import tqdm
 CHAT_MODEL_ID = sys.argv[1]
+MODE= sys.argv[2]
 
 QUESTION_PATH = config_data["MCQ_PATH"]
 SYSTEM_PROMPT = system_prompts["MCQ_QUESTION"]
@@ -26,7 +27,7 @@ SAVE_PATH = config_data["SAVE_RESULTS_PATH"]
 
 CHAT_DEPLOYMENT_ID = CHAT_MODEL_ID
 
-save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_kg_rag_based_mcq_from_monarch_and_robokop_response.csv"
+save_name = "_".join(CHAT_MODEL_ID.split("-"))+"_kg_rag_based_mcq_{mode}.csv"
 
 
 vectorstore = load_chroma(VECTOR_DB_PATH, SENTENCE_EMBEDDING_MODEL_FOR_NODE_RETRIEVAL)
@@ -38,14 +39,40 @@ def main():
     start_time = time.time()
     question_df = pd.read_csv(QUESTION_PATH)
     answer_list = []
-    for index, row in question_df.iterrows():
-        question = row["text"]
-        context =  retrieve_context(row["text"], vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, edge_evidence)
-        enriched_prompt = "Context: "+ context + "\n" + "Question: "+ question
-        output = get_GPT_response(enriched_prompt, SYSTEM_PROMPT, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
-        answer_list.append((row["text"], row["correct_node"], output))
+    
+    for index, row in tqdm(question_df.iterrows(), total=306):
+        try: 
+            question = row["text"]
+            
+            if MODE == "0":
+                context = retrieve_context(row["text"], vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, edge_evidence, model_id=CHAT_MODEL_ID)
+            
+            if MODE == "1":
+                context = retrieve_context(row["text"], vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, edge_evidence, model_id=CHAT_MODEL_ID)
+                context = get_GPT_response(context, "Please organize corpus into a structured json format", CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
+            
+            if MODE == "2":
+                context = retrieve_context(row["text"], vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, edge_evidence, model_id=CHAT_MODEL_ID)
+                context = get_GPT_response(context, "Please remove all the Provenance & Symptoms information.", CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
+            
+            if MODE == "3":
+                context = retrieve_context(row["text"], vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, edge_evidence, model_id=CHAT_MODEL_ID)
+                context = get_GPT_response(context, "Please remove all the Provenance & Symptoms information and organize corpus into a structured json format", CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
+            
+            if MODE == "0" or MODE == "1":
+                enriched_prompt = "Context: "+ context + "\n" + "Question: "+ question
+            
+            if MODE == "2" or MODE == "3":
+                enriched_prompt = "Context: "+ context + "\n" + "Question: "+ question + "Notice that similar diseases tend to have similar gene associations. "
+            
+            output = get_GPT_response(enriched_prompt, SYSTEM_PROMPT, CHAT_MODEL_ID, CHAT_DEPLOYMENT_ID, temperature=TEMPERATURE)
+            answer_list.append((row["text"], row["correct_node"], output))
+        except Exception as e:
+            print("Error in processing question: ", row["text"])
+            print("Error: ", e)
+            answer_list.append((row["text"], row["correct_node"], "Error"))
     answer_df = pd.DataFrame(answer_list, columns=["question", "correct_answer", "llm_answer"])
-    answer_df.to_csv(os.path.join(SAVE_PATH, save_name), index=False, header=True) 
+    answer_df.to_csv(os.path.join(SAVE_PATH, f"{save_name}".format(mode=MODE),), index=False, header=True) 
     print("Completed in {} min".format((time.time()-start_time)/60))
 
         

@@ -152,19 +152,20 @@ def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_
                                             device_map='auto',
                                             torch_dtype=torch.float16,
                                             revision=branch_name,
-                                            cache_dir=cache_dir
-                                            )
+                                            cache_dir=cache_dir)
     elif method == 'method-2':
         import transformers
         tokenizer = transformers.LlamaTokenizer.from_pretrained(model_name, 
                                                                 revision=branch_name, 
                                                                 cache_dir=cache_dir, 
-                                                                legacy=False)
+                                                                legacy=False,
+                                                                token="hf_WbtWB...")
         model = transformers.LlamaForCausalLM.from_pretrained(model_name, 
                                                               device_map='auto', 
                                                               torch_dtype=torch.float16, 
                                                               revision=branch_name, 
-                                                              cache_dir=cache_dir)        
+                                                              cache_dir=cache_dir,
+                                                              token="hf_WbtWB...")        
     if not stream:
         pipe = pipeline("text-generation",
                     model = model,
@@ -193,16 +194,17 @@ def llama_model(model_name, branch_name, cache_dir, temperature=0, top_p=1, max_
 
 @retry(wait=wait_random_exponential(min=10, max=30), stop=stop_after_attempt(5))
 def fetch_GPT_response(instruction, system_prompt, chat_model_id, chat_deployment_id, temperature=0):
-    # print('Calling OpenAI...')
+
     response = openai.ChatCompletion.create(
         temperature=temperature,
-        deployment_id=chat_deployment_id,
+        # deployment_id=chat_deployment_id,
         model=chat_model_id,
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": instruction}
         ]
     )
+    
     if 'choices' in response \
        and isinstance(response['choices'], list) \
        and len(response) >= 0 \
@@ -231,6 +233,16 @@ def get_gpt35():
     chat_deployment_id = chat_model_id if openai.api_type == 'azure' else None
     return chat_model_id, chat_deployment_id
 
+def get_gpt4o_mini():
+    chat_model_id = 'gpt-4o-mini' if openai.api_type == 'azure' else 'gpt-4o-mini'
+    chat_deployment_id = chat_model_id if openai.api_type == 'azure' else None
+    return chat_model_id, chat_deployment_id
+
+def get_gemini():
+    chat_model_id = 'gemini-1.5-flash' if openai.api_type == 'azure' else 'gemini-1.5-flash'
+    chat_deployment_id = chat_model_id if openai.api_type == 'azure' else None
+    return chat_model_id, chat_deployment_id
+
 def disease_entity_extractor(text):
     chat_model_id, chat_deployment_id = get_gpt35()
     resp = get_GPT_response(text, system_prompts["DISEASE_ENTITY_EXTRACTION"], chat_model_id, chat_deployment_id, temperature=0)
@@ -240,8 +252,13 @@ def disease_entity_extractor(text):
     except:
         return None
     
-def disease_entity_extractor_v2(text):
-    chat_model_id, chat_deployment_id = get_gpt35()
+def disease_entity_extractor_v2(text, model_id):
+    assert model_id in ("gpt-4o-mini", "gemini-1.5-flash")
+    if model_id == "gpt-4o-mini":
+        chat_model_id, chat_deployment_id = get_gpt4o_mini()
+    if model_id == "gemini-1.5-flash":
+        chat_model_id, chat_deployment_id = get_gemini()
+    # chat_model_id, chat_deployment_id = get_gpt35()
     prompt_updated = system_prompts["DISEASE_ENTITY_EXTRACTION"] + "\n" + "Sentence : " + text
     resp = get_GPT_response(prompt_updated, system_prompts["DISEASE_ENTITY_EXTRACTION"], chat_model_id, chat_deployment_id, temperature=0)
     try:
@@ -258,8 +275,8 @@ def load_chroma(vector_db_path, sentence_embedding_model):
     embedding_function = load_sentence_transformer(sentence_embedding_model)
     return Chroma(persist_directory=vector_db_path, embedding_function=embedding_function)
 
-def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold, edge_evidence, api=True):
-    entities = disease_entity_extractor_v2(question)
+def retrieve_context(question, vectorstore, embedding_function, node_context_df, context_volume, context_sim_threshold, context_sim_min_threshold, edge_evidence,model_id="gpt-3.5-turbo", api=True):
+    entities = disease_entity_extractor_v2(question, model_id)
     node_hits = []
     if entities:
         max_number_of_high_similarity_context_per_node = int(context_volume/len(entities))
@@ -326,7 +343,7 @@ def interactive(question, vectorstore, node_context_df, embedding_function_for_c
     print(" ")
     input("Press enter for Step 1 - Disease entity extraction using GPT-3.5-Turbo")
     print("Processing ...")
-    entities = disease_entity_extractor_v2(question)
+    entities = disease_entity_extractor_v2(question, "gpt-4o-mini")
     max_number_of_high_similarity_context_per_node = int(config_data["CONTEXT_VOLUME"]/len(entities))
     print("Extracted entity from the prompt = '{}'".format(", ".join(entities)))
     print(" ")

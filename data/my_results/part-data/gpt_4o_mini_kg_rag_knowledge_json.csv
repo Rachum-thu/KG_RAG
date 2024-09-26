@@ -1,0 +1,221 @@
+question,correct_answer,llm_answer
+"Out of the given list, which Gene is associated with psoriasis and Takayasu's arteritis. Given list is: SHTN1, HLA-B,  SLC14A2,  BTBD9,  DTNB",HLA-B,"{
+  ""answer"": ""HLA-B""
+}"
+"Out of the given list, which Gene is associated with psoriasis and myelodysplastic syndrome. Given list is:  NOD2,  CHEK2, HLA-B, GCKR,  PKNOX2",HLA-B,"```json
+{
+  ""answer"": ""HLA-B""
+}
+```"
+"Out of the given list, which Gene is associated with psoriasis and herpes zoster. Given list is:  MIF, HLA-B,  PLA2G6,  SCN1A, KITLG",HLA-B,"{
+  ""answer"": ""HLA-B""
+}"
+"Out of the given list, which Gene is associated with psoriasis and allergic rhinitis. Given list is:  ATP2B1, HLA-B,  STAT4,  TERT, FADS1",HLA-B,"```json
+{
+  ""answer"": ""HLA-B""
+}
+```"
+"Out of the given list, which Gene is associated with psoriasis and diffuse large B-cell lymphoma. Given list is:  PTPRD, XBP1,  BRCA2,  DMRT1, HLA-B",HLA-B,Which specific genes are you interested in regarding their associations with psoriasis and diffuse large B-cell lymphoma?
+"Out of the given list, which Gene is associated with psoriasis and psoriatic arthritis. Given list is:  IGF2BP2,  GRAMD1B, TNRC18,  SFRP4, HLA-B",HLA-B,"```json
+{
+  ""answer"": ""HLA-B""
+}
+```"
+"Out of the given list, which Gene is associated with membranous glomerulonephritis and autoimmune hepatitis. Given list is:  RBFOX1,  RORA, IL2RA,  BTC, HLA-DQA1",HLA-DQA1,"```json
+{
+  ""answer"": ""HLA-DQA1""
+}
+```"
+"Out of the given list, which Gene is associated with membranous glomerulonephritis and immunoglobulin alpha deficiency. Given list is: HLA-DQA1,  ADH1B,  TM6SF2, TERT,  IL2RA",HLA-DQA1,"```json
+{
+  ""answer"": ""HLA-DQA1""
+}
+```"
+"Out of the given list, which Gene is associated with membranous glomerulonephritis and collagenous colitis. Given list is: HLA-DQA1,  STAT4, ATXN2,  GNE,  RAD51B",HLA-DQA1,"```json
+{
+  ""answer"": ""HLA-DQA1""
+}
+```"
+"Out of the given list, which Gene is associated with membranous glomerulonephritis and cutaneous lupus erythematosus. Given list is:  ZFHX3,  HLA-DQA1, EPDR1,  CRTC1, HLA-DQA1",HLA-DQA1,"{
+  ""answer"": ""HLA-DQA1""
+}"
+"Out of the given list, which Gene is associated with membranous glomerulonephritis and cervix carcinoma. Given list is:  PSCA, HLA-DQA1,  KALRN, HLA-DQA1,  HLA-DRB5",HLA-DQA1,"```json
+{
+  ""answer"": ""HLA-DQA1""
+}
+```"
+"Out of the given list, which Gene is associated with periodontitis and primary angle-closure glaucoma. Given list is: EPDR1,  TYR, IL23R,  STN1,  PRNP",EPDR1,"```json
+{
+  ""answer"": null
+}
+```"
+"Out of the given list, which Gene is associated with Hodgkin's lymphoma and Hodgkin's lymphoma, nodular sclerosis. Given list is: SHTN1,  ERAP1, GATA3,  XBP1,  FTO",GATA3,"```json
+{
+  ""answer"": ""GATA3""
+}
+```"
+"Out of the given list, which Gene is associated with limited scleroderma and allergic rhinitis. Given list is: TLR1, WNT4,  HLA-DPA1,  PSCA,  DTNB",TLR1,"```json
+{
+  ""answer"": null
+}
+```"
+"Out of the given list, which Gene is associated with malaria and duodenal ulcer. Given list is:  TP53, ABO, HLA-DPA1,  ADGRV1,  GNE",ABO,"```json
+{
+  ""answer"": ""ABO""
+}
+```"
+"Out of the given list, which Gene is associated with malaria and pancreatic carcinoma. Given list is: ABO,  HLA-DPA1,  TNRC6B,  JAK2, TERT",ABO,"```json
+{
+  ""answer"": ""ABO""
+}
+```"
+"Out of the given list, which Gene is associated with focal epilepsy and epilepsy. Given list is: SCN1A,  ABCG2, DTNB,  LRMDA,  CPS1",SCN1A,"```json
+{
+  ""answer"": ""SCN1A""
+}
+```"
+"Out of the given list, which Gene is associated with hypertrophic cardiomyopathy and dilated cardiomyopathy. Given list is:  ZFPM2,  HLA-B,  BRCA2, MST1, MYH7",MYH7,"```json
+{
+  ""answer"": ""MYH7""
+}
+```"
+"Out of the given list, which Gene is associated with inflammatory bowel disease and ankylosing spondylitis. Given list is:  HOXD3, HNF1B,  TYR, IL23R,  TRAF3IP2",IL23R,"{
+  ""answer"": ""IL23R""
+}"
+"Out of the given list, which Gene is associated with inflammatory bowel disease and ulcerative colitis. Given list is:  GATA3,  IL10,  HOXD3, IL23R, TNFSF15",IL23R,"{
+  ""answer"": [""IL10"", ""IL23R"", ""TNFSF15""]
+}"
+"Out of the given list, which Gene is associated with inflammatory bowel disease and Crohn's disease. Given list is:  TNRC6B,  ARMS2, RORA,  MORC4, IL23R",IL23R,"```json
+{
+  ""answer"": ""IL23R""
+}
+```"
+"Out of the given list, which Gene is associated with interstitial lung disease and triple-receptor negative breast cancer. Given list is:  TERT,  FER, TERT,  PCDH15, PTK2B",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with interstitial lung disease and idiopathic pulmonary fibrosis. Given list is:  ATXN2, ERAP1,  RBFOX1,  NANOS1, TERT",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with interstitial lung disease and myeloproliferative neoplasm. Given list is:  ZFPM2,  IL23R, TERT,  THADA, IL23R",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with interstitial lung disease and central nervous system cancer. Given list is:  FGFR2, TERT,  HLA-DQA1,  GTF2I, SLC14A2",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with interstitial lung disease and estrogen-receptor negative breast cancer. Given list is: TERT,  CACNB2,  ERAP1, PRKAA1,  SHTN1",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with interstitial lung disease and lung adenocarcinoma. Given list is:  CHST11, SYT14, TERT,  BARD1,  USHBP1",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with interstitial lung disease and lung carcinoma. Given list is:  BTN2A1,  BRCA2,  STAT3, TERT, TFAP2B",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with triple-receptor negative breast cancer and interstitial lung disease. Given list is:  ADGRG6,  FGFR2,  AFAP1, TERT, YLPM1",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with triple-receptor negative breast cancer and idiopathic pulmonary fibrosis. Given list is: CRTC1, TERT,  ATG5,  WNT10A,  ULK4",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with triple-receptor negative breast cancer and myeloproliferative neoplasm. Given list is:  ERAP1,  SNCA, TERT,  ULK4, ADGRG6",TERT,"{  
+  ""answer"": ""TERT""  
+}"
+"Out of the given list, which Gene is associated with triple-receptor negative breast cancer and central nervous system cancer. Given list is:  PLG,  HLA-DQA1, IL6,  ATXN2, TERT",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with triple-receptor negative breast cancer and estrogen-receptor negative breast cancer. Given list is: TERT,  KIT,  DGKK, ATP2B1,  IL6",TERT,"{
+  ""answer"": ""TERT""
+}"
+"Out of the given list, which Gene is associated with triple-receptor negative breast cancer and lung adenocarcinoma. Given list is: TERT,  POU5F1B,  PLG, IGF1R,  LRMDA",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with triple-receptor negative breast cancer and lung carcinoma. Given list is:  PTPN22, C5, TERT,  FCGR2A,  FADS2",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with lung small cell carcinoma and opiate dependence. Given list is:  CFH,  CLPTM1L, TERT,  FAT3, ADGRV1",ADGRV1,"```json
+{
+  ""answer"": ""None""
+}
+```"
+"Out of the given list, which Gene is associated with lung small cell carcinoma and cervix carcinoma. Given list is: TERT, ADGRV1,  PHGDH,  CACNA1D,  TFAP2B",ADGRV1,"```json
+{
+  ""answer"": ""None""
+}
+```"
+"Out of the given list, which Gene is associated with male breast cancer and urticaria. Given list is:  BABAM1, RAD51B,  PHGDH, ABO,  TERT",RAD51B,"```json
+{
+  ""answer"": ""RAD51B""
+}
+```"
+"Out of the given list, which Gene is associated with idiopathic pulmonary fibrosis and interstitial lung disease. Given list is:  COL22A1,  KIF1B, TERT,  CLPTM1L, HLA-DQA1",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with idiopathic pulmonary fibrosis and triple-receptor negative breast cancer. Given list is:  RELN, TERT,  PLA2R1, DNMT3A,  ABO",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with idiopathic pulmonary fibrosis and myeloproliferative neoplasm. Given list is: STAT4,  UMOD,  ADGRV1,  UMPS, TERT",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with idiopathic pulmonary fibrosis and central nervous system cancer. Given list is: LOXL1, TERT,  KALRN,  RP1,  IL6",TERT,"{
+  ""answer"": ""TERT""
+}"
+"Out of the given list, which Gene is associated with idiopathic pulmonary fibrosis and estrogen-receptor negative breast cancer. Given list is: TERT,  TNFSF15, NTM,  IGF2BP2,  STN1",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with idiopathic pulmonary fibrosis and lung adenocarcinoma. Given list is: HLA-B,  CFH,  PSCA, TERT,  USHBP1",TERT,"{
+  ""answer"": ""TERT""
+}"
+"Out of the given list, which Gene is associated with idiopathic pulmonary fibrosis and lung carcinoma. Given list is: ABCG2,  SULT1B1,  ERAP1, TERT,  CHST11",TERT,"```json
+{
+  ""answer"": ""TERT""
+}
+```"
+"Out of the given list, which Gene is associated with thyroid gland papillary carcinoma and hypothyroidism. Given list is:  CLPTM1L,  MYBPC3,  FAM227B, VAV3, PRNP",VAV3,Error
+"Out of the given list, which Gene is associated with thyroid gland papillary carcinoma and differentiated thyroid gland carcinoma. Given list is:  ACOXL, POU5F1B, VAV3,  PSCA,  ZFPM2",VAV3,Error
+"Out of the given list, which Gene is associated with mature B-cell neoplasm and androgenic alopecia. Given list is:  HLA-DPA1,  PRKAG2, ERAP1, SLC14A2,  FER",SLC14A2,"```json
+{
+  ""answer"": ""SLC14A2""
+}
+```"
+"Out of the given list, which Gene is associated with mature B-cell neoplasm and cocaine dependence. Given list is:  TLR1, SLC14A2,  SCN1A,  IL12RB2, PLG",SLC14A2,"```json
+{
+  ""answer"": null
+}
+```"
+"Out of the given list, which Gene is associated with hepatitis B and lymphoma. Given list is:  KALRN, HLA-DQB2,  ALDH1A2, STAT4,  FBN1",HLA-DQB2,"```json
+{
+  ""answer"": ""HLA-DQB2""
+}
+```"

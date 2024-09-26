@@ -3,7 +3,7 @@ This script takes the MCQ style questions from the csv file and save the result 
 This script makes use of Llama model.
 Before running this script, make sure to configure the filepaths in config.yaml file.
 '''
-
+from tqdm import tqdm
 from langchain import PromptTemplate, LLMChain
 from kg_rag.utility import *
 
@@ -42,7 +42,7 @@ def main():
     llm_chain = LLMChain(prompt=prompt, llm=llm)    
     question_df = pd.read_csv(QUESTION_PATH)  
     answer_list = []
-    for index, row in question_df.iterrows():
+    for index, row in tqdm(question_df.iterrows()):
         question = row["text"]
         context = retrieve_context(question, vectorstore, embedding_function_for_context_retrieval, node_context_df, CONTEXT_VOLUME, QUESTION_VS_CONTEXT_SIMILARITY_PERCENTILE_THRESHOLD, QUESTION_VS_CONTEXT_MINIMUM_SIMILARITY, edge_evidence)
         output = llm_chain.run(context=context, question=question)
